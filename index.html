@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assesment 2</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+</head>
+<body>
+    <script>
+        $( function() {
+        $.ajax({
+                url         : "https://www.balldontlie.io/api/v1/teams",
+                type        : "GET",
+                dataType    : "json",
+                success     : function(data){
+                    console.log(data)
+                    $('#tabel').dataTable({
+                        "data" : data['data'],
+                        "columns" : [
+                            { "data" : "id" },
+                            { "data" : "abbreviation"},
+                            { "data" : "name" },
+                            { "data" : "full_name" },
+                            { "data" : "city" },
+                            { "data" : "conference" },
+                            { "data" : "division" },  
+                        ],
+                        serverSide: false
+                    })  
+                }
+            }) 
+        });
+    </script>
+
+<div id="tabs-1">
+              
+    <table border="1" id="tabel">
+        <thead>
+            <th>Id</th>
+            <th>Abbr</th>
+            <th>Name</th>
+            <th>Full Name</th>
+            <th>City</th>
+            <th>Conference</th>
+            <th>Division</th>
+        </thead>
+    </table>
+  </div>
+</body>
+</html>
